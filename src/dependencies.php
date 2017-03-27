@@ -21,18 +21,14 @@ $container['logger'] = function ($c) {
 // db
 $container['db'] = function ($c) {
     $settings = $c->get('settings')['db'];
+    die ($settings);
     $db_host = $settings['host'];
     $db_user = $settings['user'];
     $db_pass = $settings['pass'];
-    $db_name = $settings['dbname'];
-
-    try {
-        //create PDO connection
-        $db = new PDO('mysql:host=' . $db_host . ';dbname=' . $db_name, $db_user, $db_pass);
-        $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        return $db;
-    } catch(PDOException $e) {
-        //show error
-        die('Could not connect: ' . $e->getCode() . ": " . $e->getMessage());
+    $link = mysql_connect($db_host, $db_user, $db_pass);
+    if (!$link) {
+        die('Could not connect: ' . mysql_errno() . ": " . mysql_error());
     }
+    echo 'Connected successfully';
+    return $link;
 };
