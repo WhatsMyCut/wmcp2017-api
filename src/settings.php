@@ -16,11 +16,11 @@ return [
         ],
 
         // DB settings
-        db => [
-            'host' => "",
-            'user' => "",
-            'pass' => "",
-            'dbname' => "",
+        'db' => [
+            'host' => "localhost",
+            'user' => "dbo282171973",
+            'pass' => "MySQL123!",
+            'dbname' => "db282171973",
         ]
     ],
 ];
