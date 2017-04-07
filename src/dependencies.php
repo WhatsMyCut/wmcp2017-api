@@ -17,18 +17,3 @@ $container['logger'] = function ($c) {
     $logger->pushHandler(new Monolog\Handler\StreamHandler($settings['path'], $settings['level']));
     return $logger;
 };
-
-// db
-$container['db'] = function ($c) {
-    $settings = $c->get('settings')['db'];
-    die ($settings);
-    $db_host = $settings['host'];
-    $db_user = $settings['user'];
-    $db_pass = $settings['pass'];
-    $link = mysql_connect($db_host, $db_user, $db_pass);
-    if (!$link) {
-        die('Could not connect: ' . mysql_errno() . ": " . mysql_error());
-    }
-    echo 'Connected successfully';
-    return $link;
-};
